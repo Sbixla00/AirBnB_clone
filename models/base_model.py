@@ -1,6 +1,7 @@
+#!/usr/bin/python3
 import uuid
 from datetime import datetime
-from models.engine.file_storage import FileStorage
+from engine.file_storage import FileStorage
 from datetime import datetime, timezone
 
 class BaseModel:
