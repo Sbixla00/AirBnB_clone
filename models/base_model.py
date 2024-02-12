@@ -1,7 +1,6 @@
 import uuid
 from datetime import datetime
-import models
-# from models.engine.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 from datetime import datetime, timezone
 
 class BaseModel:
@@ -28,7 +27,7 @@ class BaseModel:
         FileStorage().new(self)
     def save(self):
         self.updated_at = datetime.utcnow()
-        FileStorage.save()
+        FileStorage.save(self)
 
     def to_dict(self):
         new_dict = self.__dict__.copy()
