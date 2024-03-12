@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import json
 import os
 
@@ -23,6 +24,13 @@ class FileStorage:
             json.dump(obj_dict, file)
 
     def reload(self):
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
         if os.path.isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
                 try:
@@ -34,4 +42,5 @@ class FileStorage:
                         instance = cls(**value)
                         FileStorage.__objects[key] = instance
                 except Exception as e:
-                    print("Error while reloading objects:", e)
+                    pass
+

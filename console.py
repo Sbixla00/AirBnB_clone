@@ -1,7 +1,5 @@
 import cmd
 from models.base_model import BaseModel
-import models
-from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
 from models.place import Place
@@ -162,7 +160,7 @@ class HBNBCommand(cmd.Cmd):
         instance.save()
 
         print("Instance attribute updated successfully.")
-
+    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
 

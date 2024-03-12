@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
-from models.engine.file_storage import FileStorage
+import models
 from datetime import datetime, timezone
 
 class BaseModel:
@@ -11,8 +11,8 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         date_format = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now(timezone.utc)
-        self.updated_at = datetime.now(timezone.utc)
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         BaseModel.all_id.append(self.id)
         BaseModel.all_instances[self.id] = self
 
@@ -25,10 +25,10 @@ class BaseModel:
                 else:
                     setattr(self, key, value)
 
-        FileStorage().new(self)
+        models.storage.new(self)
     def save(self):
         self.updated_at = datetime.utcnow()
-        FileStorage.save(self)
+        models.storage.save()
 
     def to_dict(self):
         new_dict = self.__dict__.copy()
